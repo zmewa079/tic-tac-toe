@@ -36,5 +36,13 @@ function render() {
       square.style.backgroundColor = '#c1bbde'
     } 
   })
-  
+  if (isWinner !== null) {
+    console.log(currentPlayerMessage)
+  } else if (isWinner === 'T') {
+    console.log(tieMessage)
+  } else {
+    console.log(winMessage)
+  }
+
+
 }
