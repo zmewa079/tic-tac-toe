@@ -4,9 +4,6 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let turn 
-const winMessage = `Player ${turn} has won!`
-const tieMessage = `Game ended in a draw!`
-const currentPlayerMessage = `It's ${turn}'s turn`
 let gameBoard = []
 let isWinner 
 /*------------------------ Cached Element References ------------------------*/
@@ -16,6 +13,10 @@ let gameStatus = document.getElementById('#message')
 
 
 /*-------------------------------- Functions --------------------------------*/
+const winMessage = () => `Congratulations!! Player ${turn} has won!`
+const tieMessage = () =>`It's a tie!`
+const currentPlayerMessage = () => `It's ${turn}'s turn`
+
 init()
 
 function init() {
@@ -27,22 +28,25 @@ function init() {
   isWinner = null
   render()
 }
+
 function render() {
   squares.forEach(function(square,idx) {
-    square = squares[idx]
-    if (turn === 1) {
+    // square = squares[idx]
+    if (gameBoard[idx] === 1) {
+      square.innerText = 'X'
       square.style.backgroundColor = '#809bce'
-    } else if (turn === -1) {
+    } else if (gameBoard[idx] === -1) {
+      square.innerText = 'O'
       square.style.backgroundColor = '#c1bbde'
     } 
   })
-  if (isWinner !== null) {
-    console.log(currentPlayerMessage)
+  
+  if (isWinner === 1 || isWinner === -1) {
+    winMessage()
   } else if (isWinner === 'T') {
-    console.log(tieMessage)
+    tieMessage()
   } else {
-    console.log(winMessage)
+    currentPlayerMessage()
   }
-
-
+  
 }
