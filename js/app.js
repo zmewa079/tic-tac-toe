@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-
+let winningCombos 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -7,10 +7,11 @@ let turn
 let gameBoard = []
 let isWinner 
 /*------------------------ Cached Element References ------------------------*/
-let squares = document.querySelectorAll('#sq')
+let squares = document.querySelectorAll('.cube')
 let gameStatus = document.getElementById('#message')
+let boardEl = document.querySelector('.board')
 /*----------------------------- Event Listeners -----------------------------*/
-
+boardEl.addEventListener('click', handleClick)
 
 /*-------------------------------- Functions --------------------------------*/
 const winMessage = () => `Congratulations!! Player ${turn} has won!`
@@ -48,5 +49,23 @@ function render() {
   } else {
     currentPlayerMessage()
   }
-  
 }
+  function handleClick(evt) {
+  if (gameBoard[parseInt((evt.target.id.replace('sq', '')))] !== null) {
+    return
+  }
+  gameBoard[(evt.target.id.replace('sq', ''))] = turn
+  turn = turn * -1
+  render()
+  }
+
+  winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [6, 4, 2],
+    [0, 4, 8]
+  ]
