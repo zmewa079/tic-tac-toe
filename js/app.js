@@ -9,7 +9,6 @@ const winningCombos = [
   [6, 4, 2],
   [0, 4, 8]
 ]
-
 /*---------------------------- Variables (state) ----------------------------*/
 let turn 
 let gameBoard = []
@@ -41,22 +40,22 @@ function render() {
     // square = squares[idx]
     if (gameBoard[idx] === 1) {
       square.innerText = 'X'
-      square.style.backgroundColor = '#809bce'
+      square.style.backgroundColor = '#deb887'
     } else if (gameBoard[idx] === -1) {
       square.innerText = 'O'
-      square.style.backgroundColor = '#c1bbde'
+      square.style.backgroundColor = '#E6CCB2'
     } else if (gameBoard[idx] === null) {
       square.innerText = ''
-      square.style.backgroundColor = 'white'
+      square.style.backgroundColor = '#F3EBE2'
     }
   })
   
   if (!isWinner) {
-    message.innerText = `It is ${turn === 1 ? "X" : "O"}'s turn!`
+    message.innerText = `It's ${turn === 1 ? "X" : "O"}'s turn!`
   } else if (isWinner === 'T') { 
-    message.innerText = `It's a tie!`
+    message.innerText = `We seem to be in a pickle...`
   } else {
-    message.innerText = `Congratulations!!! ${isWinner === 1 ? "X" : "O"} won!!`
+    message.innerText = `Hurrah!! ${isWinner === 1 ? "X" : "O"} won!!`
   }
 }
   
@@ -93,15 +92,7 @@ function handleClick(evt) {
         isWinner = "T"
         return "T"
       }
-      
     })
   }
   render()
   }
-
-  
-
-
-
-
-
